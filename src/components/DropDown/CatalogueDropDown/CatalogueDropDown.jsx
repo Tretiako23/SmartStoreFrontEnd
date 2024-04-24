@@ -34,32 +34,8 @@ const CatalogueDropDown = () => {
   };
 
   const toggleContent = () => setShowContent(prev => !prev);
-  // --------------------
-
-  function removeSpacesForComparison(str) {
-    return str.replace(/\s+/g, '');
-  }
-  const categoriName = 'Чохли';
-  const categoriesData = goods.filter(
-    item => stringNormalize(item.categories) === stringNormalize(categoriName)
-  );
 
   const checkArr = ['чохли', 'скло', 'навушники'];
-  const typeOrBrand = checkArr.includes(stringNormalize(categoriName));
-  const objKey = typeOrBrand ? 'brand' : 'type';
-
-  const uniqueFilters = categoriesData
-    .map(item => ({
-      original: item[objKey],
-      processed: removeSpacesForComparison(item[objKey].toLowerCase()),
-    }))
-    .filter((filter, index, array) => {
-      const currentIndex = array.findIndex(
-        item => item.processed === filter.processed
-      );
-      return currentIndex === index;
-    })
-    .map(item => item.original);
 
   return (
     <DropdownItemContainer
@@ -82,7 +58,7 @@ const CatalogueDropDown = () => {
                   src={`${
                     goods.find(item => item.categories === name).imgUrl || ''
                   }`}
-                  alt=""
+                  alt={name}
                   width="100px"
                   height="100px"
                 />
@@ -94,7 +70,13 @@ const CatalogueDropDown = () => {
                   new Set(
                     goods
                       .filter(item => item.categories === name)
-                      .map(item => item.type)
+                      .map(item => {
+                        const typeOrBrand = checkArr.includes(
+                          stringNormalize(item.categories)
+                        );
+                        const objKey = typeOrBrand ? 'brand' : 'type';
+                        return item[objKey];
+                      })
                   )
                 ).map(type => {
                   return (

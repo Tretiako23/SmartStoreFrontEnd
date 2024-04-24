@@ -66,6 +66,12 @@ export const SubparagraphList = styled.ul`
 
   gap: 10px;
 
+  max-height: 200px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   & > li > a {
     font-size: 14px;
     font-weight: var(--fw-bold);
