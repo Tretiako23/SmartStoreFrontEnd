@@ -8,6 +8,7 @@ import {
 } from './CatalogueDropDownStyled';
 import { NavLink } from 'react-router-dom';
 import { useStore } from '../../../zustand/store';
+import { stringNormalize } from '../../../utils';
 
 const CatalogueDropDown = () => {
   const [showContent, setShowContent] = useState(false);
@@ -33,6 +34,32 @@ const CatalogueDropDown = () => {
   };
 
   const toggleContent = () => setShowContent(prev => !prev);
+  // --------------------
+
+  function removeSpacesForComparison(str) {
+    return str.replace(/\s+/g, '');
+  }
+  const categoriName = 'Чохли';
+  const categoriesData = goods.filter(
+    item => stringNormalize(item.categories) === stringNormalize(categoriName)
+  );
+
+  const checkArr = ['чохли', 'скло', 'навушники'];
+  const typeOrBrand = checkArr.includes(stringNormalize(categoriName));
+  const objKey = typeOrBrand ? 'brand' : 'type';
+
+  const uniqueFilters = categoriesData
+    .map(item => ({
+      original: item[objKey],
+      processed: removeSpacesForComparison(item[objKey].toLowerCase()),
+    }))
+    .filter((filter, index, array) => {
+      const currentIndex = array.findIndex(
+        item => item.processed === filter.processed
+      );
+      return currentIndex === index;
+    })
+    .map(item => item.original);
 
   return (
     <DropdownItemContainer
@@ -69,11 +96,13 @@ const CatalogueDropDown = () => {
                       .filter(item => item.categories === name)
                       .map(item => item.type)
                   )
-                ).map(type => (
-                  <li key={type}>
-                    <NavLink to={`/goods/${name}/${type}`}>{type}</NavLink>
-                  </li>
-                ))}
+                ).map(type => {
+                  return (
+                    <li key={type}>
+                      <NavLink to={`/goods/${name}/${type}`}>{type}</NavLink>
+                    </li>
+                  );
+                })}
               </SubparagraphList>
             </Catalougeitem>
           ))}
