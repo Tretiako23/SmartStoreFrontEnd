@@ -16,6 +16,12 @@ const Search = () => {
       });
   };
 
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const updateQueryString = search => {
     const nextParams = search !== '' ? { search } : {};
     setSearchParams(nextParams);
@@ -27,6 +33,7 @@ const Search = () => {
       <SearchInput
         onChange={e => updateQueryString(e.target.value)}
         value={searchValue}
+        onKeyPress={handleKeyPress}
       />
     </SearchInputWrap>
   );
