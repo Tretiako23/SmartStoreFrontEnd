@@ -4,10 +4,14 @@ import { useDropzone } from 'react-dropzone';
 import { PhotoContainer } from '../AddPhoto/AddPhotoStyled';
 
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+import { notifyError, notifySucces } from '../../Toasters/Toasters';
 
 const photosListStyle = {
   display: 'flex',
   flexWrap: 'wrap',
+  gap: '10px',
+  marginBottom: '10px',
 };
 
 const AddExtraPhoto = ({
@@ -49,6 +53,24 @@ const AddExtraPhoto = ({
     }
   }, [extraPhotosfromData]);
 
+  const addBannerUrl = async (photoId, e) => {
+    try {
+      const result = await axios.patch('/sales/updateUrl', {
+        daq: 'hello world',
+        id: photoId,
+        bannerUrl: e.target.value,
+      });
+
+      if (result.status === 200) {
+        notifySucces('Операція пройшла успішно!');
+      } else {
+        notifyError();
+      }
+    } catch (error) {
+      notifyError();
+    }
+  };
+
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
@@ -65,6 +87,20 @@ const AddExtraPhoto = ({
               <button type="button" onClick={() => removePhoto(photo.id)}>
                 Видалити
               </button>
+              {btnText === 'Додати новий пост' && (
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Посилання?"
+                    // onChange={e => addBannerUrl(photo.id, e)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        addBannerUrl(photo.id, e);
+                      }
+                    }}
+                  />
+                </div>
+              )}
             </div>
           ))}
       </div>

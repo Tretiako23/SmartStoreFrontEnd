@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import slideImg1 from '../../assets/photo.png';
 
 import Slider from 'react-slick';
 import styled from 'styled-components';
@@ -56,13 +55,20 @@ export const SalesPosts = () => {
   return (
     <SliderWrap>
       <Slider {...settings}>
-        {imgData.map(item => {
-          return (
-            <SalePostImgWrap key={item.id}>
-              <IMG src={`${item.url}`} />
-            </SalePostImgWrap>
-          );
-        })}
+        {imgData?.length > 0 &&
+          imgData.map(item => {
+            return (
+              <SalePostImgWrap key={item.id}>
+                {item.bannerUrl ? (
+                  <a href={`${item.bannerUrl ? item.bannerUrl : '#'}`}>
+                    <IMG src={`${item.url}`} />
+                  </a>
+                ) : (
+                  <IMG src={`${item.url}`} />
+                )}
+              </SalePostImgWrap>
+            );
+          })}
       </Slider>
     </SliderWrap>
   );

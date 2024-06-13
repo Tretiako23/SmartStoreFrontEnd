@@ -58,12 +58,15 @@ const SalesPostsAction = () => {
   return (
     <SalesPostsActionWrap>
       <div>
-        <AddExtraPhoto
-          setExtraPhotos={setNewPhotos}
-          extraPhotosfromData={salesPostsData && salesPostsData?.img}
-          setExtraPhotosForDelete={setDeletedPhotos}
-          btnText={'Додати новий пост'}
-        />
+        <div>
+          <AddExtraPhoto
+            setExtraPhotos={setNewPhotos}
+            extraPhotosfromData={salesPostsData && salesPostsData?.img}
+            setExtraPhotosForDelete={setDeletedPhotos}
+            btnText={'Додати новий пост'}
+          />
+        </div>
+
         <button type="button" onClick={handlePatch}>
           Створити/Оновити
         </button>

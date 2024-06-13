@@ -133,3 +133,10 @@ body[data-theme='light'] {
   width: 20px;
   height: 20px;
 }
+
+.slick-slide {
+  visibility: hidden;
+}
+.slick-slide.slick-active {
+  visibility: visible;
+}
