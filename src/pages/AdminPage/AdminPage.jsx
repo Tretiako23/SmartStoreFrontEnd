@@ -5,7 +5,7 @@ import { useStore } from '../../zustand/store';
 import styled from 'styled-components';
 import Card from '../../components/AdminComponent/Card';
 import GoodForm from '../../components/AdminComponent/AddGoodsForm/GoodForm';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ModalPort from '../../components/ModalPort/ModalPort';
 import { BuyBtn } from '../../components/Goods/GoodsListByNestedId/GoodsCardStyled';
 import { UpdateFromWrap } from '../../components/AdminComponent/UpdateGoods/UpdateGoodsStyled';
@@ -23,6 +23,7 @@ const AdminPage = () => {
   const { getGoods } = useStore();
   const [isNewGoods, setIsNewGoods] = useState(false);
   const [isSalesPosts, setIsSalesPosts] = useState(false);
+  const [searchParams] = useSearchParams();
 
   const goods = useStore(state => state.goods);
 
@@ -43,8 +44,24 @@ const AdminPage = () => {
   const toggleIsNewGoodsModal = () => setIsNewGoods(prev => !prev);
   const toggleIsSalesPostsModal = () => setIsSalesPosts(prev => !prev);
 
-  function sortByCount(goods) {
-    return goods.sort((a, b) => {
+  const searchValue = searchParams.get('search') ?? '';
+
+  const filterBySearch = (searchParams, goods) => {
+    const searchLowerCase = searchParams.toLowerCase();
+    return goods.filter(item => {
+      return (
+        item.type.toLowerCase().includes(searchLowerCase) ||
+        item.brand.toLowerCase().includes(searchLowerCase) ||
+        item.title.toLowerCase().includes(searchLowerCase) ||
+        item.model.toLowerCase().includes(searchLowerCase)
+      );
+    });
+  };
+
+  const filteredBySearch = filterBySearch(searchValue, goods);
+
+  function sortByCount(filteredBySearch) {
+    return filteredBySearch.sort((a, b) => {
       if (a.count > 0 && b.count <= 0) {
         return -1;
       }
@@ -57,7 +74,7 @@ const AdminPage = () => {
     });
   }
 
-  const sortedData = sortByCount(goods);
+  const sortedData = sortByCount(filteredBySearch);
 
   return (
     <>
