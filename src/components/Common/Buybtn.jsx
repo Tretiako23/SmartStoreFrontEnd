@@ -5,6 +5,7 @@ import { useStore } from '../../zustand/store';
 
 const BuyBtn = styled.button`
   display: block;
+  min-width: 85px;
   width: calc(100% - 30px);
   padding: 8px 0;
   margin: 0 auto;
