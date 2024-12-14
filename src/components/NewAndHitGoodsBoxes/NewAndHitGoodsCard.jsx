@@ -61,7 +61,7 @@ const NewAndHitGoodsCard = ({ data }) => {
   };
 
   return (
-    <CardItemWrap style={{ height: '100%' }}>
+    <CardItemWrap style={{ height: '100%' }} $isHave={data.count > 0}>
       <div>
         <div>
           <CardLink to={`/goods/${categories}/details/${_id}`}>

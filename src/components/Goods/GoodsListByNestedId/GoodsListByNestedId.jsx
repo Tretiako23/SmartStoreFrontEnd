@@ -63,13 +63,27 @@ const GoodsListByNestedId = () => {
     filterDataByCheckBox();
   }, [checkBox, goods]);
 
+  function sortByCount(filteredData) {
+    return filteredData.sort((a, b) => {
+      if (a.count > 0 && b.count <= 0) {
+        return -1;
+      }
+
+      if (a.count <= 0 && b.count > 0) {
+        return 1;
+      }
+
+      return 0;
+    });
+  }
+
+  const sortedData = sortByCount(filteredData);
+
   return (
     <CardListWrap>
       <CardList>
-        {filteredData.length > 0 &&
-          filteredData.map(item => (
-            <GoodsCardById data={item} key={item._id} />
-          ))}
+        {sortedData.length > 0 &&
+          sortedData.map(item => <GoodsCardById data={item} key={item._id} />)}
       </CardList>
     </CardListWrap>
   );
