@@ -43,6 +43,22 @@ const AdminPage = () => {
   const toggleIsNewGoodsModal = () => setIsNewGoods(prev => !prev);
   const toggleIsSalesPostsModal = () => setIsSalesPosts(prev => !prev);
 
+  function sortByCount(goods) {
+    return goods.sort((a, b) => {
+      if (a.count > 0 && b.count <= 0) {
+        return -1;
+      }
+
+      if (a.count <= 0 && b.count > 0) {
+        return 1;
+      }
+
+      return 0;
+    });
+  }
+
+  const sortedData = sortByCount(goods);
+
   return (
     <>
       <BuyBtn
@@ -85,7 +101,8 @@ const AdminPage = () => {
       )}
 
       <AdminList>
-        {goods.length && goods.map(item => <Card key={item._id} data={item} />)}
+        {sortedData.length &&
+          sortedData.map(item => <Card key={item._id} data={item} />)}
       </AdminList>
     </>
   );

@@ -91,7 +91,7 @@ const Card = ({ data }) => {
 
   return (
     <>
-      <CardItemWrap>
+      <CardItemWrap $isHave={data.count > 0}>
         <ChoiseWrap>
           <RiDeleteBin5Fill size={'25px'} onClick={deletteItem} />
           <RiEdit2Fill size={'25px'} onClick={toggleModal} />
