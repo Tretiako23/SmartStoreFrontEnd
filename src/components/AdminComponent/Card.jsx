@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import { useStore } from '../../zustand/store';
 import UpdateGoods from './UpdateGoods/UpdateGoods';
 import { useState } from 'react';
+import CheckBox from './CheckBox/CheckBox';
 
 const ChoiseWrap = styled.div`
   border: var(--border-base);
@@ -95,6 +96,7 @@ const Card = ({ data }) => {
           <RiDeleteBin5Fill size={'25px'} onClick={deletteItem} />
           <RiEdit2Fill size={'25px'} onClick={toggleModal} />
         </ChoiseWrap>
+        <CheckBox id={data._id} initialStatus={data.isHit} />
 
         <div>
           <CardLink>

@@ -22,6 +22,15 @@ export const CategoriesList = styled.ul`
     }
   }
 
+  & > li {
+    display: block;
+    &:first-child {
+      @media (min-width: 1025px) {
+        display: none;
+      }
+    }
+  }
+
   & > li:not(:nth-last-child(-n + 2)) > ul > li > ul {
     left: 99%;
   }

@@ -165,11 +165,14 @@ const DetailsPage = () => {
               >
                 <DeliveryAndDiscountInfoBox>
                   <TbTruckDelivery size={'30px'} />{' '}
-                  <p>Безкоштовна доставка при замовленні від 2000 грн</p>
+                  <p>Безкоштовна доставка при замовленні від 3000 грн</p>
                 </DeliveryAndDiscountInfoBox>
                 <DeliveryAndDiscountInfoBox>
                   <BiSolidDiscount size={'30px'} />
-                  <p>Отримайте картку знижок при замовленні від 300 грн</p>
+                  <p>
+                    Отримайте персональну знижку здійснивши покупок на суму від
+                    5000 грн
+                  </p>
                 </DeliveryAndDiscountInfoBox>
               </ReviewsBox>
 

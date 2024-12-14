@@ -9,7 +9,6 @@ import {
   FaqQuestionText,
 } from './DiscountRulesPageStyled';
 import { useState } from 'react';
-import HowActiveCard from '../../components/DiscountRules/HowActiveCard';
 import DiscountSize from '../../components/DiscountRules/DiscountSize';
 import Main from '../../components/Main/Main';
 
@@ -35,10 +34,10 @@ const DiscountRulesPage = () => {
               Здійснюючи покупки в інтернет-магазині Smartstore.com.ua, Ви маєте
               можливість приєднатися до дисконтної програми й купувати
               різноманітні товари за вигідними цінами. Тому досить
-              переплачувати, починайте заощаджувати, отримуючи знижки до 20%.
-              Все що потрібно – оформити замовлення від 300 грн і знижка буде
-              нарахована вже після першого замовлення. З правилами дисконтної
-              програми можна ознайомитись нижче.
+              переплачувати, починайте заощаджувати, отримуючи знижки до 10%.
+              Все що потрібно – здійснити свої перші замовлення і бонусна
+              система почне рахувати знижки до вашого аккаунту. З правилами
+              дисконтної програми можна ознайомитись нижче.
             </p>
           </DiscountDescription>
         </DiscountDescriptionWrap>
@@ -46,31 +45,24 @@ const DiscountRulesPage = () => {
         <FaqList>
           <FaqItem>
             <FaqQuestionText onClick={() => toggleAnswerVisibility(1)}>
-              Як отримати знижку?
+              Як отримати картку?
             </FaqQuestionText>
 
             {answersVisible[1] && (
               <FaqAnswerText>
-                Для отримання знижки необхідно оформити замовлення від 300 грн.
-                Ви отримаєте знижку після оплати вашого першого замовлення.
-                Пам'ятайте кожне ваше замовлення буде збільшувати розмір вашої
-                знижки.
+                Стати власником знижок може будь-який роздрібний клієнт
+                інтернет-магазину. Для отримання знижок необхідно
+                зареєструватись та здійснити своє перше замовлення. Систима
+                відразу ж почне рахувати вашу персональну знижку.
               </FaqAnswerText>
             )}
           </FaqItem>
 
-          {/* <FaqItem>
-            <FaqQuestionText onClick={() => toggleAnswerVisibility(2)}>
-              Як активувати картку?
-            </FaqQuestionText>
-            {answersVisible[2] && <HowActiveCard />}
-          </FaqItem> */}
-
           <FaqItem>
-            <FaqQuestionText onClick={() => toggleAnswerVisibility(3)}>
+            <FaqQuestionText onClick={() => toggleAnswerVisibility(2)}>
               Як дізнатися розмір знижки?
             </FaqQuestionText>
-            {answersVisible[3] && <DiscountSize />}
+            {answersVisible[2] && <DiscountSize />}
           </FaqItem>
         </FaqList>
       </section>

@@ -32,7 +32,7 @@ const IsDelivery = ({ count }) => {
           {deliveryText}
         </DeliveryText>
       ) : (
-        <NotAvailableText>Нема в наявності!</NotAvailableText>
+        <NotAvailableText>Немає в наявності!</NotAvailableText>
       )}
     </div>
   );

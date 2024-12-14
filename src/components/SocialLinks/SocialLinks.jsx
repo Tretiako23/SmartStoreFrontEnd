@@ -5,7 +5,8 @@ import {
   SocialLinksWrap,
 } from './SocialLinksStyled';
 import { FaInstagram } from 'react-icons/fa6';
-import { FaTelegramPlane } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa6';
+
 const SocialLinks = () => {
   return (
     <SocialLinksWrap>
@@ -23,12 +24,12 @@ const SocialLinks = () => {
 
         <SocialLinksItem>
           <SocialLink
-            href="https://t.me/smartstore94"
+            href="https://www.tiktok.com/@smart.store_electronics?_t=8s9w5DbXZAc&_r=1"
             target="_blank"
             rel="noopener noreferrer"
-            title="Посилання до Telegram каналу"
+            title="Посилання до Tik-Tok каналу"
           >
-            <FaTelegramPlane size={'20px'} />
+            <FaTiktok size={'20px'} />
           </SocialLink>
         </SocialLinksItem>
       </SocialLinksList>

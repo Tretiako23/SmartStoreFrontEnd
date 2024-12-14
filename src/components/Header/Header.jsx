@@ -98,7 +98,7 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <a href="tel:+380 50 272 47 91">+380 50 272 47 91</a>
+                  <a href="tel:+380 50 272 47 91">+380 66 422 06 67</a>
                 </li>
               </NavLinkList>
             </nav>

@@ -1,14 +1,9 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { DropdownItemContainer } from '../DropDownStyled';
 import { useState } from 'react';
-import {
-  CatalougeList,
-  Catalougeitem,
-  SubparagraphList,
-} from './CatalogueDropDownStyled';
+import { CatalougeList, Catalougeitem } from './CatalogueDropDownStyled';
 import { NavLink } from 'react-router-dom';
 import { useStore } from '../../../zustand/store';
-import { stringNormalize } from '../../../utils';
 
 const CatalogueDropDown = () => {
   const [showContent, setShowContent] = useState(false);
@@ -34,8 +29,6 @@ const CatalogueDropDown = () => {
   };
 
   const toggleContent = () => setShowContent(prev => !prev);
-
-  const checkArr = ['чохли', 'скло', 'навушники'];
 
   return (
     <DropdownItemContainer
@@ -65,27 +58,6 @@ const CatalogueDropDown = () => {
 
                 <h4>{name}</h4>
               </NavLink>
-              <SubparagraphList>
-                {Array.from(
-                  new Set(
-                    goods
-                      .filter(item => item.categories === name)
-                      .map(item => {
-                        const typeOrBrand = checkArr.includes(
-                          stringNormalize(item.categories)
-                        );
-                        const objKey = typeOrBrand ? 'brand' : 'type';
-                        return item[objKey];
-                      })
-                  )
-                ).map(type => {
-                  return (
-                    <li key={type}>
-                      <NavLink to={`/goods/${name}/${type}`}>{type}</NavLink>
-                    </li>
-                  );
-                })}
-              </SubparagraphList>
             </Catalougeitem>
           ))}
         </CatalougeList>

@@ -1,10 +1,13 @@
 import Main from '../../components/Main/Main';
+import NewAndHitGoodsBox from '../../components/NewAndHitGoodsBoxes/NewAndHitGoodsBoxes';
+
 import { SalesPosts } from '../../components/SalesPosts/SalesPosts';
 import { AboutUs, AboutUsDescription } from './HomePageStyled';
 
 const HomePage = () => {
   return (
     <Main>
+      <NewAndHitGoodsBox />
       <SalesPosts />
       <AboutUs>
         <h2>Про нас</h2>
@@ -14,7 +17,7 @@ const HomePage = () => {
             Smart Store!
           </span>
           <span>
-            {`У нас Ви знайдете чохли, зарядні пристрої, навушники, гарнітури,
+            {`У нас Ви зможете купити чохли, зарядні пристрої, навушники, гарнітури,
             кільцеві лампи, павербанки, захисне скло, ремінці для фітнес
             браслетів,тримери,фени для волосся,дитячі іграшки від найкращих
             виробників. Замовляйте товари в зручний для себе час: ввечері або на

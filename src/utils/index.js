@@ -5,6 +5,13 @@ export const formatter = new Intl.NumberFormat('uk-UA', {
   currency: 'UAH',
 });
 
+export const checkIsNewGoods = createdAt => {
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+  return new Date(createdAt) >= sevenDaysAgo;
+};
+
 export const applyDiscount = (amount, discountPercent) => {
   if (parseInt(discountPercent) < 0 || parseInt(discountPercent) > 100) {
     return 'Некоректні дані';

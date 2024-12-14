@@ -137,6 +137,15 @@ body[data-theme='light'] {
 .slick-slide {
   visibility: hidden;
 }
+
 .slick-slide.slick-active {
   visibility: visible;
+}
+
+.carousel-item div {
+  margin: 0 auto;
+}
+.carousel-container {
+  box-shadow: var(--shadow);
+  padding: 10px 0;
 }

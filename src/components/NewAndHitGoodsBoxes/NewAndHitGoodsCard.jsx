@@ -1,48 +1,42 @@
 /* eslint-disable react/prop-types */
 
-import { FaStar } from 'react-icons/fa';
 import { FcLike, FcDislike } from 'react-icons/fc';
+import axios from 'axios';
+import { useState } from 'react';
+// import Buybtn from '../../Common/Buybtn';
+// import ModalPort from '../../ModalPort/ModalPort';
+// import SubscribeModal from '../../Modals/SubscribeModal/SubscribeModal';
+
 import {
   AmountWrap,
   CardItemWrap,
   CardLink,
   DescriptionWrap,
   FavoritesWrap,
-  StarWrap,
   StatusBadge,
   StatusBadgeBox,
-} from './GoodsCardStyled';
-import { notifyError, notifySucces } from '../../Toasters/Toasters';
-import { useStore } from '../../../zustand/store';
-import {
-  applyDiscount,
-  calculateAverageRating,
-  checkIsNewGoods,
-  formatter,
-} from '../../../utils';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import Buybtn from '../../Common/Buybtn';
-import ModalPort from '../../ModalPort/ModalPort';
-import SubscribeModal from '../../Modals/SubscribeModal/SubscribeModal';
-import { useState } from 'react';
+} from '../Goods/GoodsListByNestedId/GoodsCardStyled';
+import { useStore } from '../../zustand/store';
+import { applyDiscount, checkIsNewGoods, formatter } from '../../utils';
+import { notifyError, notifySucces } from '../Toasters/Toasters';
+import Buybtn from '../Common/Buybtn';
+import ModalPort from '../ModalPort/ModalPort';
+import SubscribeModal from '../Modals/SubscribeModal/SubscribeModal';
 
-const GoodsCardById = ({ data }) => {
+const NewAndHitGoodsCard = ({ data }) => {
   const user = useStore(state => state.auth.user);
   const { getGoods } = useStore();
   const isLoggedIn = useStore(store => store.auth.isLoggedIn);
-  let { goodsName } = useParams();
   const [isSubscribe, setIsSubscribe] = useState(false);
   const toggleSubscribeModal = () => setIsSubscribe(prev => !prev);
 
   const discount = data && parseInt(data.discount);
   const isFavorite = data && data.favorites.includes(user?.id);
-  const ratingArr = data && data.reviews.map(item => item.feedbackPoints);
 
   const isNewGoods = checkIsNewGoods(data.createdAt);
   const isHit = data.isHit;
 
-  const { imgUrl, title, description, _id, amount } = data;
+  const { imgUrl, title, categories, _id, amount } = data;
 
   const handleFavorite = async id => {
     try {
@@ -67,10 +61,10 @@ const GoodsCardById = ({ data }) => {
   };
 
   return (
-    <CardItemWrap $isHave={data.count > 0}>
+    <CardItemWrap style={{ height: '100%' }}>
       <div>
         <div>
-          <CardLink to={`/goods/${goodsName}/details/${_id}`}>
+          <CardLink to={`/goods/${categories}/details/${_id}`}>
             <img
               src={imgUrl}
               alt={title}
@@ -115,22 +109,8 @@ const GoodsCardById = ({ data }) => {
           </FavoritesWrap>
         </div>
       </div>
-      <StarWrap>
-        {[...Array(5)].map((_, index) => (
-          <FaStar
-            key={index}
-            size={25}
-            color={
-              index < calculateAverageRating(ratingArr)
-                ? 'rgb(201 183 77)'
-                : 'gray'
-            }
-          />
-        ))}
-      </StarWrap>
-      <DescriptionWrap>
-        <p>{description}</p>
 
+      <DescriptionWrap>
         {!isLoggedIn ? (
           discount && discount !== 0 && discount > 0 ? (
             <AmountWrap>
@@ -169,4 +149,4 @@ const GoodsCardById = ({ data }) => {
   );
 };
 
-export default GoodsCardById;
+export default NewAndHitGoodsCard;

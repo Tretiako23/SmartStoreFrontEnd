@@ -134,6 +134,7 @@ export const useStore = create(
 
       getGoods: async () => {
         const { data } = await axios.get('/goods');
+
         set(
           state => ({
             ...state,
@@ -194,6 +195,34 @@ export const useStore = create(
                   return { ...item, ...data };
                 }
 
+                return item;
+              }),
+            }),
+            false,
+            'updateGoods'
+          );
+          notifySucces('Товар успішно оновлено!');
+        } catch (error) {
+          error.response.status === 500
+            ? notifyError('Додайте фото товару')
+            : notifyError(error.message);
+        } finally {
+          set(state => ({ ...state, isLoading: false }));
+        }
+      },
+
+      updateHitGoods: async (id, isHit) => {
+        try {
+          set(state => ({ ...state, isLoading: true }));
+          const { data } = await axios.put(`/goods/${id}/${isHit}`);
+
+          set(
+            state => ({
+              ...state,
+              goods: state.goods.map(item => {
+                if (item._id === id) {
+                  return { ...item, ...data };
+                }
                 return item;
               }),
             }),

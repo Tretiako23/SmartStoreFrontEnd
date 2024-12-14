@@ -42,7 +42,6 @@ const FiltersBtn = styled.button`
 
   border: none;
   font-size: var(--fs-md);
-  // border-radius: 20px;
 
   background-color: #1365a6;
   color: hsl(0, 0%, 100%);

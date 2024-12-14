@@ -51,45 +51,15 @@ const DiscountSize = () => {
               </TableRow>
             </tr>
             <tr>
-              <TableRow>до 500 грн</TableRow>
-              <TableRow>
-                <DiscountCount>-3%</DiscountCount>
-              </TableRow>
-            </tr>
-            <tr>
-              <TableRow>501 – 1000 грн</TableRow>
+              <TableRow>від 5000 грн</TableRow>
               <TableRow>
                 <DiscountCount>-5%</DiscountCount>
               </TableRow>
             </tr>
             <tr>
-              <TableRow>1001 – 1500 грн</TableRow>
-              <TableRow>
-                <DiscountCount>-7%</DiscountCount>
-              </TableRow>
-            </tr>
-            <tr>
-              <TableRow>1501 – 2500 грн</TableRow>
+              <TableRow>від 10000 грн</TableRow>
               <TableRow>
                 <DiscountCount>-10%</DiscountCount>
-              </TableRow>
-            </tr>
-            <tr>
-              <TableRow>2501 – 5000 грн</TableRow>
-              <TableRow>
-                <DiscountCount>-12%</DiscountCount>
-              </TableRow>
-            </tr>
-            <tr>
-              <TableRow>5001 - 7000 грн</TableRow>
-              <TableRow>
-                <DiscountCount>-15%</DiscountCount>
-              </TableRow>
-            </tr>
-            <tr>
-              <TableRow>від 7001 грн</TableRow>
-              <TableRow>
-                <DiscountCount>-20%</DiscountCount>
               </TableRow>
             </tr>
           </TableBody>

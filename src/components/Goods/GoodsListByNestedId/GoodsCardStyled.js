@@ -1,8 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const CardItemWrap = styled.li`
+export const CardItemWrap = styled.div`
   position: relative;
+
+  filter: ${({ $isHave }) => !$isHave && 'grayscale(100%)'};
+  opacity: ${({ $isHave }) => !$isHave && '0.65'};
+  transition: ${({ $isHave }) => !$isHave && 'all 300ms'};
 
   display: flex;
   flex-direction: column;
@@ -13,6 +17,7 @@ export const CardItemWrap = styled.li`
   }
 
   max-width: 350px;
+  // height: 100%;
 
   padding: 20px;
 
@@ -41,19 +46,26 @@ export const CardLink = styled(NavLink)`
   gap: 10px;
 `;
 
-export const DiscountWrap = styled.div`
+export const StatusBadgeBox = styled.div`
   position: absolute;
   top: 20px;
   left: 5px;
 
   display: flex;
   flex-direction: column;
+  gap: 5px;
+`;
+
+export const StatusBadge = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 
   & > span {
     color: white;
-    background-color: #eb5757;
-    font-size: 10px;
+    background-color: ${({ color }) => color || '#eb5757'};
+    font-size: 12px;
+    font-weight: 900;
     padding: 5px 8px;
 
     & + span {
