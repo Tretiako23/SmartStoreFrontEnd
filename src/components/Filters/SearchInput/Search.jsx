@@ -32,8 +32,8 @@ const Search = () => {
     setSearchParams(nextParams);
 
     if (location.pathname !== '/goods' && location.pathname !== '/admin') {
-      navigate('/goods?search=' + encodeURIComponent(searchValue), {
-        replace: false,
+      navigate('/goods?search=' + encodeURIComponent(search), {
+        replace: true,
       });
     }
   };
