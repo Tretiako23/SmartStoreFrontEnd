@@ -30,6 +30,12 @@ const Search = () => {
   const updateQueryString = search => {
     const nextParams = search !== '' ? { search } : {};
     setSearchParams(nextParams);
+
+    if (location.pathname !== '/goods' && location.pathname !== '/admin') {
+      navigate('/goods?search=' + encodeURIComponent(searchValue), {
+        replace: false,
+      });
+    }
   };
 
   return (

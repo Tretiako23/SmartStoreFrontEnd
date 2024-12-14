@@ -56,7 +56,7 @@ export const SharedLayoutForGoods = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
   let { goodsName, id, nestedId } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchValue = searchParams.get('search') ?? '';
 
   const { setCurrentGoods } = useStore();
