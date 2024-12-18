@@ -7,7 +7,7 @@ const BuyBtn = styled.button`
   display: block;
   min-width: 85px;
   width: calc(100% - 30px);
-  padding: 8px 0;
+  padding: 8px 3px;
   margin: 0 auto;
 
   border-radius: var(--b-radius);
